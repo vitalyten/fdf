@@ -6,7 +6,7 @@
 /*   By: vtenigin <vtenigin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 15:16:58 by vtenigin          #+#    #+#             */
-/*   Updated: 2016/11/14 16:40:53 by vtenigin         ###   ########.fr       */
+/*   Updated: 2016/11/16 22:57:29 by vtenigin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,16 @@
 void ft_fdf(char *file)
 {
 	t_map *map;
+	t_dot **dots;
 	int	i;
 	int	j;
+	void *mlx;
+	void *win;
+	int x;
+	int y;
+	int xl;
+	int yl;
+	unsigned int color = 0xffffff;
 
 	map = (t_map *)malloc(sizeof(t_map));
 	map = ft_makemap(file, map);
@@ -34,6 +42,42 @@ void ft_fdf(char *file)
 		printf("\n");
 		i++;
 	}
+	dots = (t_dot **)malloc(sizeof(t_dot *) * map->height);
+	y = 0;
+	while (y < map->height)
+	{
+		x = 0;
+		dots[y] = (t_dot *)malloc(sizeof(t_dot) * map->width);
+		while (x < map->width)
+		{
+			dots[y][x].x = 150 + x * 10 - y * 11;
+			dots[y][x].y = 100 + y * 10 + x * 8 - map->data[y][x];
+			x++;
+		}
+		y++;
+	}
+	mlx = mlx_init();
+	win = mlx_new_window(mlx, 500, 500, "fdf");
+	y = 0;
+	while (y < map->height)
+	{
+		x = 0;
+		while (x < map->width)
+		{
+			mlx_pixel_put(mlx, win, dots[y][x].x, dots[y][x].y, color);
+			xl = dots[y][x].x;
+			yl = dots[y][x].y;
+			while (y + 1 < map->height && xl < dots[y + 1][x].x && yl < dots[y + 1][x].y)
+			{
+
+			}
+			// mlx_pixel_put(mlx, win, 150 + x * 10 - y * 11, 100 + y * 10 + x * 8 - map->data[y][x], color);
+			x++;
+		}
+		y++;
+	}
+	// mlx_key_hook(win, key_fun, 0);
+	mlx_loop(mlx);
 }
 
 int	main(int ac, char **av)
@@ -44,35 +88,7 @@ int	main(int ac, char **av)
 }
 
 
-// {
-// 	void *mlx;
-// 	void *win;
-// 	int x;
-// 	int y;
-// 	unsigned int color = 0xffffff;
 
-// 	mlx = mlx_init();
-// 	win = mlx_new_window(mlx, 1000, 1000, "fdf");
-// 	y = 50;
-// 	while (y < 950)
-// 	{
-// 		x = 50;
-// 		while (x < 950)
-// 		{
-// 			if (x % 33 && y % 2)
-// 			{
-// 				// mlx_pixel_put(mlx, win, x, y, color--);
-// 				if (color == 0)
-// 					color = 0xffffff;
-// 			}
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// 	mlx_key_hook(win, key_fun, 0);
-// 	mlx_loop(mlx);
-// 	return(0);
-// }
 
 // int	key_fun(int key, void *mlx, void *win)
 // {

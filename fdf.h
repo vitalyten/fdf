@@ -6,7 +6,7 @@
 /*   By: vtenigin <vtenigin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 11:50:50 by vtenigin          #+#    #+#             */
-/*   Updated: 2016/11/14 15:23:02 by vtenigin         ###   ########.fr       */
+/*   Updated: 2016/11/16 22:08:09 by vtenigin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 # include "minilibx/mlx.h"
 # include "libft/libft.h"
 # include <fcntl.h>
+
+typedef struct	s_dot
+{
+	int			x;
+	int			y;
+}				t_dot;
 
 typedef struct	s_map
 {
