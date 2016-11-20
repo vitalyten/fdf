@@ -6,7 +6,7 @@
 /*   By: vtenigin <vtenigin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 15:16:58 by vtenigin          #+#    #+#             */
-/*   Updated: 2016/11/18 12:57:13 by vtenigin         ###   ########.fr       */
+/*   Updated: 2016/11/19 22:35:57 by vtenigin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void ft_fdf(char *file)
 	void *win;
 	int x;
 	int y;
-	// float x1;
-	// float y1;
-	// float x2;
-	// float y2;
-	// float xl;
-	// float yl;
+	float x1;
+	float y1;
+	float x2;
+	float y2;
+	float xl;
+	float yl;
 	unsigned int color = 0xffffff;
 
 	map = (t_map *)malloc(sizeof(t_map));
@@ -54,8 +54,8 @@ void ft_fdf(char *file)
 		dots[y] = (t_dot *)malloc(sizeof(t_dot) * map->width);
 		while (x < map->width)
 		{
-			dots[y][x].x = 150 + x * 10 - y * 11;
-			dots[y][x].y = 100 + y * 10 + x * 8 - map->data[y][x];
+			dots[y][x].x = 200 + x * 15 - y * 15;
+			dots[y][x].y = 100 + y * 15 + x * 12 - map->data[y][x] * 2;
 			x++;
 		}
 		y++;
@@ -68,25 +68,44 @@ void ft_fdf(char *file)
 		x = 0;
 		while (x < map->width)
 		{
-			printf("y+1 = %d < m->h = %d", y + 1, map->height);
 			mlx_pixel_put(mlx, win, dots[y][x].x, dots[y][x].y, color);
-			// xl = (float)(dots[y][x].x + 1);
-			
-			// if (y + 1 < map->height)
-			// {
-			// 	while (xl < dots[y + 1][x].x)
-			// 	{
-			// 		printf("y + 1 = %d  map->height = %d xl = %f dy1xx = %d yl = %f dy1xy = %d\n",
-			//  y + 1, map->height, xl, dots[y + 1][x].x, yl, dots[y + 1][x].y);
-			// 		x1 = (float)dots[y][x].x;
-			// 		y1 = (float)dots[y][x].y;
-			// 		x2 = (float)dots[y + 1][x].x;
-			// 		y2 = (float)dots[y + 1][x].y;
-			// 		yl = ((xl - x1) / (x2 - x1)) * (y2 - y1) + y1;
-			// 		mlx_pixel_put(mlx, win, (int)xl, (int)yl, color);
-			// 		xl++;
-			// 	}
-			// }
+			xl = (float)(dots[y][x].x - 1);
+			if (y + 1 < map->height)
+			{
+				while (xl > dots[y + 1][x].x)
+				{
+					x1 = (float)dots[y][x].x;
+					y1 = (float)dots[y][x].y;
+					x2 = (float)dots[y + 1][x].x;
+					y2 = (float)dots[y + 1][x].y;
+					yl = ((xl - x1) / (x2 - x1)) * (y2 - y1) + y1;
+					mlx_pixel_put(mlx, win, (int)xl, (int)yl, color);
+					xl--;
+				}
+			}
+
+
+			xl = (float)(dots[y][x].x + 1);
+			if (x + 1 < map->width)
+			{
+				// printf("y+1 = %d < m->h = %d\n", y + 1, map->height);
+				// printf("xl = %f < dots y+1 x = %d\n", xl, dots[y + 1][x].x);
+				while (xl < dots[y][x + 1].x)
+				{
+					// printf("y + 1 = %d  map->height = %d xl = %f dy1xx = %d yl = %f dy1xy = %d\n",
+			 // y + 1, map->height, xl, dots[y + 1][x].x, yl, dots[y + 1][x].y);
+					x1 = (float)dots[y][x].x;
+					y1 = (float)dots[y][x].y;
+					x2 = (float)dots[y][x + 1].x;
+					y2 = (float)dots[y][x + 1].y;
+					yl = ((xl - x1) / (x2 - x1)) * (y2 - y1) + y1;
+					mlx_pixel_put(mlx, win, (int)xl, (int)yl, color);
+					xl++;
+				}
+			}
+
+
+
 			// mlx_pixel_put(mlx, win, 150 + x * 10 - y * 11, 100 + y * 10 + x * 8 - map->data[y][x], color);
 			x++;
 		}
