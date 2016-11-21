@@ -6,7 +6,7 @@
 /*   By: vtenigin <vtenigin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 11:50:50 by vtenigin          #+#    #+#             */
-/*   Updated: 2016/11/16 22:08:09 by vtenigin         ###   ########.fr       */
+/*   Updated: 2016/11/20 16:31:11 by vtenigin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,19 @@ typedef struct	s_dot
 {
 	int			x;
 	int			y;
+	int			z;
 }				t_dot;
 
 typedef struct	s_map
 {
 	int			height;
 	int			width;
-	int			**data;
+	int			sq;
+	t_dot		**dots;
 }				t_map;
 
 t_map	*ft_makemap(char *file, t_map *map);
-int		*ft_fillmap(char **data, t_map *map);
+t_map	*ft_fillmap(char **data, t_map *map, int y);
 t_map	*ft_getdim(char *file, t_map *map);
 void	ft_fdf(char *file);
 
