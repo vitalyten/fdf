@@ -6,7 +6,7 @@
 /*   By: vtenigin <vtenigin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/14 16:26:37 by vtenigin          #+#    #+#             */
-/*   Updated: 2016/11/27 19:35:12 by vtenigin         ###   ########.fr       */
+/*   Updated: 2016/11/27 22:44:07 by vtenigin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,14 @@ t_map	*ft_makemap(char *file, t_map *map)
 	}
 	close(fd);
 	map->mlx = mlx_init();
-	map->win = mlx_new_window(map->mlx, 800, 800, "fdf");
-	map->r1 = -0.1;
-	map->r2 = -0.7;
-	map->r3 = 0.5;
+	map->win = mlx_new_window(map->mlx, 2000, 1000, "fdf");
+	map->r1 = 2;
+	map->r2 = 0;
+	map->r3 = 0;
 	map->step = 20;
+	map->scale = 1;
+	map->offx = 500;
+	map->offy = 200;
 	return (map);
 }
 
