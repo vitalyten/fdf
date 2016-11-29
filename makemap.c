@@ -6,7 +6,7 @@
 /*   By: vtenigin <vtenigin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/14 16:26:37 by vtenigin          #+#    #+#             */
-/*   Updated: 2016/11/27 22:44:07 by vtenigin         ###   ########.fr       */
+/*   Updated: 2016/11/28 16:47:29 by vtenigin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_showerr(int code)
 	exit(-1);
 }
 
-void	ft_printmap(t_map *map)  // remove
+void	ft_printmap(t_map *map)
 {
 	int	i;
 	int	j;
@@ -37,6 +37,20 @@ void	ft_printmap(t_map *map)  // remove
 		printf("\n");
 		i++;
 	}
+}
+
+t_map	*ft_initmap(t_map *map)
+{
+	map->mlx = mlx_init();
+	map->win = mlx_new_window(map->mlx, 2000, 1000, "fdf");
+	map->r1 = 1;
+	map->r2 = 0;
+	map->r3 = 0;
+	map->step = 20;
+	map->scale = 1;
+	map->offx = 500;
+	map->offy = 200;
+	return (map);
 }
 
 t_map	*ft_makemap(char *file, t_map *map)
@@ -60,30 +74,23 @@ t_map	*ft_makemap(char *file, t_map *map)
 		y++;
 	}
 	close(fd);
-	map->mlx = mlx_init();
-	map->win = mlx_new_window(map->mlx, 2000, 1000, "fdf");
-	map->r1 = 2;
-	map->r2 = 0;
-	map->r3 = 0;
-	map->step = 20;
-	map->scale = 1;
-	map->offx = 500;
-	map->offy = 200;
+	map = ft_initmap(map);
 	return (map);
 }
 
 t_map	*ft_fillmap(char **data, t_map *map, int y)
 {
 	int		x;
-	char	*clr;
+	// char	*clr;
 
 	x = 0;
 	map->dots[y] = (t_dot *)malloc(sizeof(t_dot) * map->width);
 	while (*data)
 	{
 		map->dots[y][x].z = ft_atoi(*data);
-		clr = ft_strstr(*data, "0x");
-		map->dots[y][x].clr = (clr) ? ft_atoi_base(clr, 16) : 0;
+		// clr = ft_strstr(*data, "0x");
+		// map->dots[y][x].clr = (clr) ? ft_atoi_base(clr, 16) : 0xffffff;
+		map->dots[y][x].clr = 0xffffff;
 		map->dots[y][x].x = x;
 		map->dots[y][x].y = y;
 		data++;
