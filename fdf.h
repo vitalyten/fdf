@@ -6,7 +6,7 @@
 /*   By: vtenigin <vtenigin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 11:50:50 by vtenigin          #+#    #+#             */
-/*   Updated: 2016/11/28 22:53:41 by vtenigin         ###   ########.fr       */
+/*   Updated: 2016/12/02 11:12:14 by vtenigin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,12 @@
 # include "libft/libft.h"
 # include <fcntl.h>
 # include <math.h>
-# include <stdio.h> // remove
 
 typedef struct	s_dot
 {
 	int			x;
 	int			y;
 	int			z;
-	long long	clr;
 }				t_dot;
 
 typedef struct	s_map
@@ -35,7 +33,7 @@ typedef struct	s_map
 	int			width;
 	int			sq;
 	int			step;
-	int			scale;
+	float		scale;
 	int			offx;
 	int			offy;
 	double		r1;
@@ -44,20 +42,20 @@ typedef struct	s_map
 	t_dot		**dots;
 }				t_map;
 
-int		key_fun(int keycode, t_map *map);
-void	ft_keyrot(int keycode, t_map *map);
-int		ft_abs(int	n);
-void	ft_swap(int	*a, int *b);
-void	ft_drawmap(t_map *map);
-void	ft_drawline(t_dot a, t_dot b, t_map *map);
-void	ft_liney(t_dot a, t_dot b, t_map *map);
-void	ft_linex(t_dot a, t_dot b, t_map *map);
-t_dot	ft_rot(t_dot a, t_map *map);
-t_map	*ft_getdim(char *file, t_map *map);
-t_map	*ft_fillmap(char **data, t_map *map, int y);
-t_map	*ft_makemap(char *file, t_map *map);
-t_map	*ft_initmap(t_map *map);
-void	ft_printmap(t_map *map);
-void	ft_showerr(int code);
+int				key_fun(int keycode, t_map *map);
+void			ft_keyrot(int keycode, t_map *map);
+int				ft_abs(int	n);
+void			ft_swap(int	*a, int *b);
+void			ft_drawmap(t_map *map);
+void			ft_drawline(t_dot a, t_dot b, t_map *map);
+void			ft_liney(t_dot a, t_dot b, t_map *map);
+void			ft_linex(t_dot a, t_dot b, t_map *map);
+t_dot			ft_rot(t_dot a, t_map *map);
+t_map			*ft_getdim(char *file, t_map *map);
+t_map			*ft_fillmap(char **data, t_map *map, int y);
+t_map			*ft_makemap(char *file, t_map *map);
+t_map			*ft_initmap(t_map *map);
+void			ft_printmap(t_map *map);
+void			ft_showerr(int code);
 
 #endif

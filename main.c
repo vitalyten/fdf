@@ -6,13 +6,13 @@
 /*   By: vtenigin <vtenigin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 15:16:58 by vtenigin          #+#    #+#             */
-/*   Updated: 2016/11/28 22:49:00 by vtenigin         ###   ########.fr       */
+/*   Updated: 2016/12/02 11:19:46 by vtenigin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_swap(int	*a, int *b)
+void	ft_swap(int *a, int *b)
 {
 	int	temp;
 
@@ -21,9 +21,9 @@ void	ft_swap(int	*a, int *b)
 	*b = temp;
 }
 
-int		ft_abs(int	n)
+int		ft_abs(int n)
 {
-	return((n > 0) ? n : -n);
+	return ((n > 0) ? n : -n);
 }
 
 void	ft_keyrot(int keycode, t_map *map)
@@ -44,7 +44,6 @@ void	ft_keyrot(int keycode, t_map *map)
 
 int		key_fun(int keycode, t_map *map)
 {
-	printf("key = %d\n", keycode);
 	if (keycode == 53)
 		exit(0);
 	if (keycode >= 0 && keycode <= 14)
@@ -54,9 +53,9 @@ int		key_fun(int keycode, t_map *map)
 	if (keycode == 24)
 		map->step += 1;
 	if (keycode == 121)
-		map->scale -= 1;
+		map->scale -= 0.5;
 	if (keycode == 116)
-		map->scale += 1;
+		map->scale += 0.5;
 	if (keycode == 123)
 		map->offx -= 5;
 	if (keycode == 124)
@@ -69,7 +68,7 @@ int		key_fun(int keycode, t_map *map)
 	return (0);
 }
 
-int	main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	t_map	*map;
 
@@ -77,7 +76,6 @@ int	main(int ac, char **av)
 	{
 		map = (t_map *)malloc(sizeof(t_map));
 		map = ft_makemap(av[1], map);
-		ft_printmap(map); // print matrix
 		ft_drawmap(map);
 		mlx_key_hook(map->win, key_fun, map);
 		mlx_loop(map->mlx);
