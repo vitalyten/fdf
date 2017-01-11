@@ -6,7 +6,7 @@
 /*   By: vtenigin <vtenigin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 11:50:50 by vtenigin          #+#    #+#             */
-/*   Updated: 2016/12/02 11:12:14 by vtenigin         ###   ########.fr       */
+/*   Updated: 2016/12/02 14:17:39 by vtenigin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct	s_map
 	void		**win;
 	int			height;
 	int			width;
-	int			sq;
 	int			step;
 	float		scale;
 	int			offx;

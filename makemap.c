@@ -6,7 +6,7 @@
 /*   By: vtenigin <vtenigin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/14 16:26:37 by vtenigin          #+#    #+#             */
-/*   Updated: 2016/12/02 11:03:25 by vtenigin         ###   ########.fr       */
+/*   Updated: 2016/12/02 14:19:40 by vtenigin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ t_map	*ft_getdim(char *file, t_map *map)
 			map->width = i;
 		ft_strdel(&str);
 	}
-	map->sq = (map->width + map->height) / 2 * 30;
 	close(fd);
 	return (map);
 }
